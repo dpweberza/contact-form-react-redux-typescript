@@ -21,14 +21,16 @@ interface Props extends InjectedFormProps {
   clearStoredValues: () => {};
 }
 
-class ContactPage extends React.Component<Props> {
+interface State {
+  submitted: boolean;
+  success: boolean;
+}
 
-  private submitted: boolean = false;
-  private success: boolean = false;
+class ContactPage extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-
+    this.state = { submitted: false, success: false };
     this.submit = this.submit.bind(this);
     this.clearValues = this.clearValues.bind(this);
   }
@@ -39,12 +41,12 @@ class ContactPage extends React.Component<Props> {
     try {
       await contactService.createMessage(values.fullName, values.emailAddress, values.message);
       dispatch(storeContactFormDetails(values));
-      this.success = true;
+      this.setState({success: true});
     } catch (err) {
       Logger.error(err);
-      this.success = false;
+      this.setState({success: false});
     } finally {
-      this.submitted = true;
+      this.setState({submitted: true});
     }
   }
 
@@ -56,8 +58,8 @@ class ContactPage extends React.Component<Props> {
 
   render() {
     let message;
-    if (this.submitted) {
-        if (this.success) {
+    if (this.state.submitted) {
+        if (this.state.success) {
           message = (
             <Alert bsStyle="success">
             <strong>Success!</strong><span> Thanks for getting in touch, we'll get back to you asap.</span>
@@ -126,14 +128,14 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-let InitializeFromStateForm = reduxForm({
+let DecoratedContactPage = reduxForm({
   form: 'ContactForm',
   enableReinitialize: true
 })(ContactPage);
 
-InitializeFromStateForm = connect(
+DecoratedContactPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(InitializeFromStateForm);
+)(DecoratedContactPage);
 
-export default InitializeFromStateForm;
+export default DecoratedContactPage;
