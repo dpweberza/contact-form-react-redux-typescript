@@ -2,6 +2,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import FARocket from 'react-icons/lib/fa/rocket';
 
 class Navigation extends React.Component {
     render() {
@@ -9,7 +10,7 @@ class Navigation extends React.Component {
         <Navbar inverse={true} fluid={true}>
             <Navbar.Header>
                 <Navbar.Brand>
-                    <NavLink to="/" exact={true}>Challenger App</NavLink>
+                    <NavLink to="/" exact={true}><FARocket /> Challenger App</NavLink>
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>

@@ -1,14 +1,11 @@
-import { createStore, combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import { createStore } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const rootReducer = combineReducers({
-  // ...your other reducers here
+import reducers from './reducers';
 
-  // you have to pass formReducer under 'form' key,
-  // for custom keys look up the docs for 'getFormState'
-  form: formReducer
-});
+const store = createStore(reducers, composeWithDevTools(autoRehydrate()));
 
-const store = createStore(rootReducer);
+persistStore(store, {whitelist: ['contactform']});
 
 export default store;
