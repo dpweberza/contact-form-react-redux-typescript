@@ -1,0 +1,16 @@
+@import 'variables.scss';
+
+// Colours
+$brand-primary: $hero-colour;
+
+// Components
+$border-radius-base: 15px;
+$border-radius-large: 20px;
+$border-radius-small: 10px;
+
+// Nav bar
+$navbar-inverse-bg: $nav-colour;
+
+// Base bootstrap inclusion
+@import 'node_modules/bootstrap-sass/assets/stylesheets/_bootstrap-mincer.scss';
+@import 'node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';

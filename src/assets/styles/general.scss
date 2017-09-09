@@ -7,6 +7,12 @@ html {
 body {
     font-family: 'Noto Serif', serif;
     padding-top: 5rem;
+    color: $font-colour;
+}
+
+.logo {
+    fill: $hero-colour;
+    font-size: 10rem;
 }
 
 textarea {
