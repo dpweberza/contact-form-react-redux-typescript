@@ -12,5 +12,5 @@ $border-radius-small: 10px;
 $navbar-inverse-bg: $nav-colour;
 
 // Base bootstrap inclusion
-@import 'node_modules/bootstrap-sass/assets/stylesheets/_bootstrap-mincer.scss';
-@import 'node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';

@@ -6,6 +6,7 @@ import { ButtonToolbar, Button, Alert } from 'react-bootstrap';
 
 import Field from './form/Field';
 import Input from './form/Input';
+import Captcha from './form/Captcha';
 import ContactService from '../api/contactService';
 import { storeContactFormDetails, clearContactFormDetails } from '../store/actions';
 import Logger from '../util/logger';
@@ -15,6 +16,7 @@ interface FormValues {
   fullName: string;
   emailAddress: string;
   message: string;
+  captcha: string;
 }
 
 interface Props extends InjectedFormProps {
@@ -40,7 +42,9 @@ class ContactPage extends React.Component<Props, State> {
     
     try {
       await contactService.createMessage(values.fullName, values.emailAddress, values.message);
-      dispatch(storeContactFormDetails(values));
+      const persistableValues = Object.assign({}, values);
+      delete persistableValues.captcha;
+      dispatch(storeContactFormDetails(persistableValues));
       this.setState({success: true});
     } catch (err) {
       Logger.error(err);
@@ -102,6 +106,13 @@ class ContactPage extends React.Component<Props, State> {
             component={Input} 
             label="Message" 
           />
+          <Field 
+            name="captcha" 
+            validate={required} 
+            component={Captcha} 
+            label="Captcha" 
+          />
+
           <ButtonToolbar>
             <Button type="submit" bsStyle="primary" disabled={this.props.submitting}>
               Submit
