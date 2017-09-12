@@ -1,3 +1,8 @@
+# React + Redux + TypeScript Coding Challenge
+
+## Live Demo
+http://dpweberza-contact-form.azurewebsites.net/contact
+
 ## Getting started
 Clone the repo and install the npm dependencies.
 
